@@ -1,16 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+    <title>PizzaBox</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+
 <body>
-    <input type="text">
-    <button>Pick Your Poison</button>
-    <div class="SearchResults">Cards Go Here</div>
-    <div class="Recipe">Recipe Goes Here</div>
-    <div class="Nutrition">Nutrition Info Goes Here</div>
+    <input type="text" id="search-field">
+    <input type="submit" id="search-button" value="Pick Your Poison">
+
+
+
+    <!--Recipe Cards-->
+    <div class="ui special cards">
+        <div class="card">
+            <div class="blurring dimmable image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <div class="ui inverted button">See Recipe</div>
+                            <div class="ui inverted button">Save Recipe</div>
+                        </div>
+                    </div>
+                </div>
+                <img alt="pizza" src="assets/img/pizza.jpg">
+            </div>
+            <div class="content">
+                <a class="header" id="recipe-title-link">Pepperoni Pizza</a>
+                <div class="meta">
+                    <span class="text" id="description">good for health</span>
+                </div>
+            </div>
+            <div class="extra content">
+            </div>
+        </div>
+    </div>
+
+    <!--Recipe and Nutrition Info-->
+    <div class="ui container">
+        <div class="column">
+            <div class="ui fluid card">
+                <div class="image">
+                    <img alt="ramen" src="assets/img/ramen.jpg"
+                        style="width: 350px; height: 350px; float: left;  margin-left: 35%;">
+                </div>
+                <div class="content">
+                    <a class="ui huge header" id="recipe-title-link">Spicy Ramen</a>
+                </div>
+
+                <div class="content">
+                    <a class="header">Ingredients: </a>
+                    <div class="ui list" id="ingredients">
+                        <div class="item">Apples</div>
+                    </div>
+                    <a class="header">Nutrition</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+
+    <script>$('.special.cards .image').dimmer({
+            on: 'hover'
+        });</script>
+
+    </head>
 </body>
+
 </html>
