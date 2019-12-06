@@ -10,16 +10,43 @@
 <body>
     <input type="text">
     <button>Pick Your Poison</button>
-    <div class="SearchResults">Cards Go Here</div>
+    
     <div class="Recipe">Recipe Goes Here</div>
     <div class="Nutrition">Nutrition Info Goes Here</div>
 
-    <script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+    <!--Recipe Cards-->
+    <div class="ui special cards">
+            <div class="card">
+              <div class="blurring dimmable image">
+                <div class="ui dimmer">
+                  <div class="content">
+                    <div class="center">
+                      <div class="ui inverted button">See Recipe</div>
+                      <div class="ui inverted button">Save Recipe</div>
+                    </div>
+                  </div>
+                </div>
+                <img src="assets/img/pizza.jpg">
+              </div>
+              <div class="content">
+                <a class="header">Pepperoni Pizza</a>
+                <div class="meta">
+                  <span class="text">good for health</span>
+                </div>
+              </div>
+              <div class="extra content">
+              </div>
+            </div>
+          </div>
 
+    
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+
+    <script>$('.special.cards .image').dimmer({
+            on: 'hover'
+          });</script>
 
 </head>
 </body>
