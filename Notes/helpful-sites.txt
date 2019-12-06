@@ -1,0 +1,15 @@
+﻿https://semantic-ui.com/ CSS framework
+
+
+https://semantic-ui.com/elements/container.html#/definition creating container
+
+
+https://semantic-ui.com/modules/sidebar.html#/usage creating sidebar for favorites
+
+
+https://semantic-ui.com/collections/menu.html creating menu options
+
+
+
+
+https://dribbble.com/tags/cooking_app ideas for formatting and app layout
