@@ -11,8 +11,7 @@
     <input type="text" id="search-field">
     <input type="submit" id="search-button" value="Pick Your Poison">
     
-    <div id="Recipe">Recipe Goes Here</div>
-    <div id="Nutrition">Nutrition Info Goes Here</div>
+
 
     <!--Recipe Cards-->
     <div class="ui special cards">
@@ -40,18 +39,26 @@
           </div>
 
     <!--Recipe and Nutrition Info-->
-    <div class="ui one column grid">
-            <div class="column">
-              <div class="ui fluid card">
-                <div class="fluid image">
-                  <img src="assets/img/ramen.jpg">
+    <div class="ui container">
+        <div class="column">
+            <div class="ui fluid card">
+              <div class="image">
+                <img alt="ramen" src="assets/img/ramen.jpg" style="width: 350px; height: 350px; float: left;  margin-left: 35%;">
+              </div>
+              <div class="content">
+                  <a class="ui huge header" id="recipe-title-link">Spicy Ramen</a>
                 </div>
-                <div class="content">
-                  <a class="header">Daniel Louise</a>
-                </div>
+                
+              <div class="content">
+                  <a class="header">Ingredients: </a>
+                  <div class="ui list" id="ingredients">
+                      <div class="item">Apples</div>
+                    </div>
+                <a class="header">Nutrition</a>
               </div>
             </div>
           </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
