@@ -66,4 +66,8 @@ function getNutrition(ingredients) {
     }).then(function (response) {
         console.log(response);
     });
+
+    $('#previewCards .image').dimmer({
+        on: 'hover'
+        });
 }
