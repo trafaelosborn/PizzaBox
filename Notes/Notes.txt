@@ -1,0 +1,23 @@
+﻿Basic Recipe Search features:
+1. Search button
+2. Filter button
+3. Recipe card(picture and title) populates with return results
+Optional Ideas:
+-nutrition info(hover buttons, fade, etc.)
+-like/save feature
+-link to view recipe source
+
+
+Elements:
+-cards
+
+
+How the user feels. Is it aesthetically pleasing?
+
+
+-Clean cards on result returns
+
+
+Mini cards
+-picture with recipe name
+        -option to click on it and have button options to see recipe or add to favorites
