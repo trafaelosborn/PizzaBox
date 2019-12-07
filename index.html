@@ -9,18 +9,34 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
 
 <body>
-    <input type="text" id="search-field">
-    <input type="submit" id="search-button" value="Pick Your Poison">
+   
 
 
-
+    <header>
+            <div class="ui menu">
+                <div class="header item">
+                    Pizza Box
+                </div>
+                <a class="item">
+                    Recipes
+                </a>
+                <a class="item">
+                    Ingredients
+                </a>
+                <a class="item">
+                    Favorites
+                </a>
+                <input type="text" id="search-field">
+                <input type="submit" id="search-button" value="Pick Your Poison">
+            </div>
+        </header>
     
 
 
 
     <!--Recipe Cards-->
+    <div class="ui container">
     <div class="ui special cards">
-
         <div class="card">
             <div class="blurring dimmable image">
                 <div class="ui dimmer">
@@ -43,7 +59,7 @@
             </div>
         </div>
     </div>
-
+    </div>
           
 
 
@@ -65,6 +81,8 @@
                     <div class="ui list" id="ingredients">
                         <div class="item">Apples</div>
                     </div>
+                    <br>
+                    <br>
                     <a class="header">Nutrition</a>
                 </div>
             </div>
