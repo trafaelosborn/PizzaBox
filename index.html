@@ -35,7 +35,7 @@
 
 
     <!--Recipe Cards-->
-    <div class="ui container">
+    <div class="ui container" id="previewCard">
     <div class="ui special cards">
         <div class="card">
             <div class="blurring dimmable image">
@@ -64,7 +64,7 @@
 
 
     <!--Recipe and Nutrition Info-->
-    <div class="ui container">
+    <div class="ui container" id="recipeNutritionCard">
             <div class="column">
                 <div class="ui fluid card">
     
@@ -79,11 +79,11 @@
                     <div class="content">
                             <div class="ui large header">Ingredients</div>
                         <div class="ui list" id="ingredients">
-                            <div class="item">Apples</div>
-                            <br>
-                            <br>
-                            <div class="ui large header">Directions</div>
-                            <p>Dragée sweet roll sesame snaps topping oat cake. Tootsie roll ice cream soufflé biscuit wafer cake toffee lemon drops. Lemon drops tart dragée bonbon candy marzipan gummi bears bonbon. Pie biscuit chupa chups jelly beans pudding gingerbread fruitcake cake tootsie roll. Jelly-o topping pie tiramisu liquorice danish. Tiramisu cake jelly beans gingerbread sweet candy gummi bears toffee. Candy canes marshmallow tootsie roll soufflé lollipop croissant croissant. Sweet apple pie pastry biscuit icing fruitcake. Candy canes cheesecake jelly beans ice cream sesame snaps jelly beans. Pie wafer sesame snaps bear claw sesame snaps chocolate pastry cupcake bonbon. Chupa chups gingerbread cheesecake lemon drops pudding soufflé donut chocolate cake croissant. Cotton candy liquorice macaroon pudding cookie dragée ice cream fruitcake.</p>
+                        <div class="item">Apples</div>
+                        <br>
+                        <br>
+                        <div class="ui large header">Directions</div>
+                        <p>Dragée sweet roll sesame snaps topping oat cake. Tootsie roll ice cream soufflé biscuit wafer cake toffee lemon drops. Lemon drops tart dragée bonbon candy marzipan gummi bears bonbon. Pie biscuit chupa chups jelly beans pudding gingerbread fruitcake cake tootsie roll. Jelly-o topping pie tiramisu liquorice danish. Tiramisu cake jelly beans gingerbread sweet candy gummi bears toffee. Candy canes marshmallow tootsie roll soufflé lollipop croissant croissant. Sweet apple pie pastry biscuit icing fruitcake. Candy canes cheesecake jelly beans ice cream sesame snaps jelly beans. Pie wafer sesame snaps bear claw sesame snaps chocolate pastry cupcake bonbon. Chupa chups gingerbread cheesecake lemon drops pudding soufflé donut chocolate cake croissant. Cotton candy liquorice macaroon pudding cookie dragée ice cream fruitcake.</p>
                         </div>
                         <br>
                         <br>
@@ -104,9 +104,12 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 
-    <script>$('.special.cards .image').dimmer({
-            on: 'hover'
-            });</script>
+    <script>
+    
+    $('.special.cards .image').dimmer({
+            on: 'hover'});
+    
+
 
     </head>
 
