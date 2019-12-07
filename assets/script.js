@@ -1,14 +1,28 @@
 const appID = "599eeff6";
 const apiKey = "9ba899b6cf470706c026e545e7e3e1b6";
+const maxHits = 12; // Change this to however many hits you want the page to display after a search
 
 $(document).ready(function () {
+    $("#searchButton").click(function(event) {
+        event.preventDefault();
+
+        var searchText = $("#searchField").val().trim();
+
+        if (searchText.length > 0) {
+            getRecipes(searchText);
+        } else {
+            // To-do: replace this alert with a nicer modal
+            alert("Search field cannot be blank.");
+        }
+    });
+
     $('.special.cards .image').dimmer({
         on: 'hover'
     });
 });
 
-function getRecipes(searchParams) {
-    var queryUrl = "https://api.edamam.com/search?q=chicken&app_id=" + appID + "&app_key=" + apiKey + "&from=0&to=3&calories=591-722&health=alcohol-free";
+function getRecipes(searchText) {
+    var queryUrl = "https://api.edamam.com/search?q=" + searchText + "&app_id=" + appID + "&app_key=" + apiKey + "&from=0&to=" + maxHits;
     $.ajax({
         url: queryUrl,
         method: "GET"
@@ -28,13 +42,13 @@ function getRecipes(searchParams) {
                         content.append(center);
                     uiDimmer.append(content);
                 blurDimImg.append(uiDimmer);
-                var img = $("<img>").attr("alt", hits[i].recipe.label).attr("src", hits[i].recipe.image);
+                var img = $("<img>").attr("alt", response.hits[i].recipe.label).attr("src", response.hits[i].recipe.image);
                 blurDimImg.append(img);
             card.append(blurDimImg);
             var content2 = $("<div>").addClass("content");
-                var header = $("<a>").addClass("recipe-title-link").text(hits[i].recipe.label);
+                var header = $("<a>").addClass("recipe-title-link").text(response.hits[i].recipe.label);
                     var meta = $("<div>").addClass("meta");
-                        var span = $("<span>").addClass("text").text(hits[i].recipe.label);
+                        var span = $("<span>").addClass("text").text(response.hits[i].recipe.label);
                     meta.append(span);
                 content2.append(header, meta);
             card.append(content2);
