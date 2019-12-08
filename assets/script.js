@@ -54,6 +54,10 @@ function getRecipes(searchText) {
             card.append(content2);
 
             $("#previewCards").append(card);
+
+            $('.special.cards .image').dimmer({
+                on: 'hover'
+            });
         }
     });
 }
