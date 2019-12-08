@@ -40,7 +40,7 @@ function getRecipes(searchText) {
                     var uiDimmer = $("<div>").addClass("ui dimmer");
                         var content = $("<div>").addClass("content");
                             var center = $("<div>").addClass("center");
-                                var seeRecipeButton = $("<div>").addClass("ui inverted button").text("See Recipe");
+                                var seeRecipeButton = $("<div>").addClass("ui inverted button").text("See Recipe").attr('id', 'recipeButton');
                                 var saveRecipeButton = $("<div>").addClass("ui inverted button").text("Save Recipe");
                             center.append(seeRecipeButton, saveRecipeButton);
                         content.append(center);
@@ -61,10 +61,18 @@ function getRecipes(searchText) {
             $("#previewCards").show();
             $('.special.cards .image').dimmer({
                 on: 'hover'
+
+                
             });
         }
     });
+    
 }
+
+
+$("#recipeButton").click(function() {
+    console.log("good job")
+});
 
 function getNutrition(ingredients) {
     var queryUrl = "https://api.edamam.com/api/nutrition-data?app_id=" + appID + "&app_key=" + apiKey + "&ingr=1%20large%20apple";
@@ -72,10 +80,8 @@ function getNutrition(ingredients) {
         url: queryUrl,
         method: "POST",
     }).then(function (response) {
-        console.log(response);
+       console.log(response);
     });
 
-    $('#previewCards .image').dimmer({
-        on: 'hover'
-        });
+    
 }
