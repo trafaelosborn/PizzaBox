@@ -50,7 +50,7 @@ function getRecipes(searchText) {
                 blurDimImg.append(img);
             card.append(blurDimImg);
             var content2 = $("<div>").addClass("content");
-                var header = $("<a>").addClass("recipe-title-link").text(response.hits[i].recipe.label);
+                var header = $("<a>").addClass("recipe-title-link").text(response.hits[i].recipe.label).attr("href", response.hits[i].recipe.url);
                     var meta = $("<div>").addClass("meta");
                         var span = $("<span>").addClass("text").text(response.hits[i].recipe.label);
                     meta.append(span);
