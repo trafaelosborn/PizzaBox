@@ -52,7 +52,7 @@ function getRecipes(searchText) {
             var content2 = $("<div>").addClass("content");
                 var header = $("<a>").addClass("recipe-title-link").text(response.hits[i].recipe.label).attr("href", response.hits[i].recipe.url);
                     var meta = $("<div>").addClass("meta");
-                        var span = $("<span>").addClass("text").text(response.hits[i].recipe.label);
+                        var span = $("<span>").addClass("text").text("from " + response.hits[i].recipe.source);
                     meta.append(span);
                 content2.append(header, meta);
             card.append(content2);
