@@ -3,6 +3,10 @@ const apiKey = "9ba899b6cf470706c026e545e7e3e1b6";
 const maxHits = 12; // Change this to however many hits you want the page to display after a search
 
 $(document).ready(function () {
+
+    $("#previewCards").hide();
+    $("#recipeNutritionCard").hide();
+
     $("#searchButton").click(function(event) {
         event.preventDefault();
 
@@ -54,7 +58,7 @@ function getRecipes(searchText) {
             card.append(content2);
 
             $("#previewCards").append(card);
-
+            $("#previewCards").show();
             $('.special.cards .image').dimmer({
                 on: 'hover'
             });
