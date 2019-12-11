@@ -1,8 +1,6 @@
 // API credentials
 const recipeAppID = "599eeff6";
 const recipeApiKey = "9ba899b6cf470706c026e545e7e3e1b6";
-const nutritionAppID = "fd617fa3";
-const nutritionApiKey = "6e6f9be7510b48fac69160d4728c2166";
 
 // Change this to however many hits you want the page to display after a search
 const maxHits = 12;
@@ -29,11 +27,6 @@ $(document).ready(function () {
             // To-do: replace this alert with a nicer modal
             alert("Search field cannot be blank.");
         }
-    });
-
-    // To-do: this part might now be redundant since we're doing this dynamically as preview cards are generated. Let's explore
-    $('.special.cards .image').dimmer({
-        on: 'hover'
     });
 });
 
