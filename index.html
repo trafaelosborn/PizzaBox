@@ -15,11 +15,12 @@
 
     <header>
         <div class="ui menu">
-            <div class="header item">
+            <div class="header item" role="heading">
                 Pizza Box
             </div>
             
             <form>
+                <label for="searchField">Search: </label>
                 <input type="text" id="searchField">
                 <input type="submit" id="searchButton" value="Pick Your Poison">
             </form>
@@ -27,12 +28,10 @@
     </header>
 
 
-
-
     <!--Recipe Cards-->
 
     <div class="ui container">
-        <div class="ui special cards" id="previewCards">
+        <div class="ui special cards" id="previewCards" role="list">
             <div class="card">
                 <div class="blurring dimmable image">
                     <div class="ui dimmer">

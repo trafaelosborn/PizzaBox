@@ -8,15 +8,21 @@ const nutritionApiKey = "6e6f9be7510b48fac69160d4728c2166";
 const maxHits = 12;
 
 $(document).ready(function () {
-
+    // Hide our dynamic content until it is needed
     $("#previewCards").hide();
     $("#recipeNutritionCard").hide();
 
+    // Give the search field focus when the page first loads
+    $("#searchField").focus();
+
+    // Define click handler for search button
     $("#searchButton").click(function (event) {
         event.preventDefault();
 
+        // Get the text from the search field, trimming off any excess white space
         var searchText = $("#searchField").val().trim();
 
+        // Ensure valid imput before performing search
         if (searchText.length > 0) {
             getRecipes(searchText);
         } else {
@@ -25,11 +31,13 @@ $(document).ready(function () {
         }
     });
 
+    // To-do: this part might now be redundant since we're doing this dynamically as preview cards are generated. Let's explore
     $('.special.cards .image').dimmer({
         on: 'hover'
     });
 });
 
+// Searches the recipe API for the specified dish and appends matching results in the search results area of the page
 function getRecipes(searchText) {
     var queryUrl = "https://api.edamam.com/search?q=" + searchText + "&app_id=" + recipeAppID + "&app_key=" + recipeApiKey + "&from=0&to=" + maxHits;
     $.ajax({
@@ -38,15 +46,20 @@ function getRecipes(searchText) {
     }).then(function (response) {
         console.log(response);
 
+        // Clear the search results div
         $("#previewCards").empty();
+
+        // Loop through the results retrieved from the API
         for (var i = 0; i < response.hits.length; i++) {
+            // Create a new card
             var card = $("<div>").addClass("card");
+            card.attr("role", "listitem");
             var blurDimImg = $("<div>").addClass("blurring dimmable image");
             var uiDimmer = $("<div>").addClass("ui dimmer");
             var content = $("<div>").addClass("content");
             var center = $("<div>").addClass("center");
-            var seeRecipeButton = $("<div>").addClass("ui inverted button recipeButton").text("See Recipe").attr('id', 'recipeButton');
-            var saveRecipeButton = $("<div>").addClass("ui inverted button").text("Save Recipe");
+            var seeRecipeButton = $("<div>").addClass("ui inverted button recipeButton").text("See Recipe").attr('id', 'recipeButton').attr("role", "button");
+            var saveRecipeButton = $("<div>").addClass("ui inverted button").text("Save Recipe").attr("role", "button");
             center.append(seeRecipeButton, saveRecipeButton);
             content.append(center);
             uiDimmer.append(content);
@@ -62,14 +75,22 @@ function getRecipes(searchText) {
             content2.append(header, meta);
             card.append(content2);
 
+            // Append the card to the search results area
             $("#previewCards").append(card);
-            $("#previewCards").show();
-            $('.special.cards .image').dimmer({
-                on: 'hover'
-            });
-
         }
+        
+        // Enable dimmer effect for search result images
+        $('.special.cards .image').dimmer({
+            on: 'hover'
+        });
 
+        // Show the search results
+        $("#previewCards").show();
+
+        // Set focus to the first search result in the list
+        setTimeout(function() {
+            $("a:first").focus();
+        }, 500);
     });
 
 }
