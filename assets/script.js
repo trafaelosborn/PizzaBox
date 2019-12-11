@@ -46,27 +46,39 @@ function getRecipes(searchText) {
         for (var i = 0; i < response.hits.length; i++) {
             // Create a new card
             var card = $("<div>").addClass("card");
+
+            // Role for screen reader compatibility
             card.attr("role", "listitem");
+
+            // Elements needed for visual image effects
             var blurDimImg = $("<div>").addClass("blurring dimmable image");
             var uiDimmer = $("<div>").addClass("ui dimmer");
-            var content = $("<div>").addClass("content");
-            var center = $("<div>").addClass("center");
-            var seeRecipeButton = $("<div>").addClass("ui inverted button recipeButton").text("See Recipe").attr('id', 'recipeButton').attr("role", "button");
-            var saveRecipeButton = $("<div>").addClass("ui inverted button").text("Save Recipe").attr("role", "button");
-            center.append(seeRecipeButton, saveRecipeButton);
-            content.append(center);
-            uiDimmer.append(content);
             blurDimImg.append(uiDimmer);
+
             var img = $("<img>").attr("alt", response.hits[i].recipe.label).attr("src", response.hits[i].recipe.image);
+
+            // Save the URI for each recipe so details can be displayed when this result is clicked
+            img.attr("value", encodeURIComponent(response.hits[i].recipe.uri));
+
+            // These aid in screen reader compatibility
+            img.attr("role", "button");
+            img.attr("tabindex", "0");
+
+            // Define click handler for card
+            img.click(function(event) {
+                event.preventDefault();
+                alert($(this).attr("value"));
+                getInfo($(this).attr("value"));
+            });
             blurDimImg.append(img);
             card.append(blurDimImg);
-            var content2 = $("<div>").addClass("content");
-            var header = $("<a>").addClass("recipe-title-link").text(response.hits[i].recipe.label).attr("href", response.hits[i].recipe.url);
+            var content = $("<div>").addClass("content");
+            var header = $("<span>").addClass("recipe-title-link").text(response.hits[i].recipe.label);
             var meta = $("<div>").addClass("meta");
             var span = $("<span>").addClass("text").text("from " + response.hits[i].recipe.source);
             meta.append(span);
-            content2.append(header, meta);
-            card.append(content2);
+            content.append(header, meta);
+            card.append(content);
 
             // Append the card to the search results area
             $("#previewCards").append(card);
@@ -85,30 +97,13 @@ function getRecipes(searchText) {
             $("a:first").focus();
         }, 500);
     });
-
 }
 
-$("#recipeButton").click(function () {
-    console.log("good job")
-});
-
-
-function getNutrition(ingredients) {
-    var queryUrl = "http://api.edamam.com/api/nutrition-details?app_id=" + nutritionAppID + "&app_key=" + nutritionApiKey;
+function getInfo(recipeUri) {
+    var queryUrl = "https://api.edamam.com/search?r=" + recipeUri + "&app_id=" + recipeAppID + "&app_key=" + recipeApiKey;
     $.ajax({
         url: queryUrl,
-        type: "POST",
-        data: {
-            "title": "BLT",
-            "ingr": [
-                "white bread",
-                "bacon",
-                "lettuce",
-                "tomatoes",
-                "mayonnaise"
-            ]
-        },
-        contentType: "application/json"
+        method: "GET"
     }).then(function (response) {
         console.log(response);
     });
