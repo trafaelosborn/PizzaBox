@@ -59,6 +59,8 @@ function getRecipes(searchText) {
             var content = $("<div>").addClass("content");
             var center = $("<div>").addClass("center");
             var seeRecipeButton = $("<div>").addClass("ui inverted button recipeButton").text("See Recipe");
+            seeRecipeButton.attr("role", "button");
+            seeRecipeButton.attr("tabindex", "0");
 
             // Use a data attribute to hold the URI to the recipe.
             // This will be used when displaying details for a search result
@@ -66,11 +68,17 @@ function getRecipes(searchText) {
             seeRecipeButton.attr("data-uri", encodeURIComponent(response.hits[i].recipe.uri));
 
             // Add the see recipe button's click handler dynamically
-            seeRecipeButton.click(function(event) {
+            seeRecipeButton.click(function (event) {
+                event.preventDefault();
+
                 // Call the getInfo method and pass it the URI stored in whichever button was clicked
                 getInfo($(this).attr("data-uri"));
             });
-            var saveRecipeButton = $("<div>").addClass("ui inverted button").text("Save Recipe").attr("role", "button");
+
+            var saveRecipeButton = $("<div>").addClass("ui inverted button").text("Save Recipe")
+            saveRecipeButton.attr("role", "button");
+            saveRecipeButton.attr("tabindex", "0");
+
             center.append(seeRecipeButton, saveRecipeButton);
             content.append(center);
             uiDimmer.append(content);
@@ -79,7 +87,7 @@ function getRecipes(searchText) {
             blurDimImg.append(img);
             card.append(blurDimImg);
             var content2 = $("<div>").addClass("content");
-            var header = $("<a>").addClass("recipe-title-link").text(response.hits[i].recipe.label).attr("href", response.hits[i].recipe.url);
+            var header = $("<a>").addClass("recipe-title-link").text(response.hits[i].recipe.label);
             var meta = $("<div>").addClass("meta");
             var span = $("<span>").addClass("text").text("from " + response.hits[i].recipe.source);
             meta.append(span);
@@ -89,27 +97,27 @@ function getRecipes(searchText) {
             // Append the card to the search results area
             $("#previewCards").append(card);
         }
-        
+
         // Enable dimmer effect for search result images
         $('.special.cards .image').dimmer({
             on: 'hover'
         });
 
-        // Show the search results
+        // Show the search results and hide the results div if visible
+        $("#recipeNutritionCard").hide();
         $("#previewCards").show();
 
         // Set focus to the first search result in the list
-        setTimeout(function() {
+        setTimeout(function () {
             $("a:first").focus();
         }, 500);
     });
-
 }
 
+/*
 $("#recipeButton").click(function () {
     console.log("good job")
 });
-
 
 function getNutrition(ingredients) {
     var queryUrl = "http://api.edamam.com/api/nutrition-details?app_id=" + nutritionAppID + "&app_key=" + nutritionApiKey;
@@ -131,6 +139,7 @@ function getNutrition(ingredients) {
         console.log(response);
     });
 }
+*/
 
 function getInfo(recipeUri) {
     var queryUrl = "https://api.edamam.com/search?r=" + recipeUri + "&app_id=" + recipeAppID + "&app_key=" + recipeApiKey;
@@ -140,7 +149,8 @@ function getInfo(recipeUri) {
     }).then(function (response) {
         console.log(response);
 
-        // Show the info div
+        // Show the info div and hide search results
+        $("#previewCards").hide();
         $("#recipeNutritionCard").show();
 
         // Show image
