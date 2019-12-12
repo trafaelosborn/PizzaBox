@@ -159,6 +159,7 @@ function getInfo(recipeUri) {
 
         // Show heading
         $("#recipeTitle").text(response[0].label);
+        $("#recipeTitle").attr("href", response[0].url);
 
         // Show ingredients
         $("#ingredients").empty();
