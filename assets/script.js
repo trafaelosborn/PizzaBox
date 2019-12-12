@@ -1,8 +1,8 @@
 // API credentials
 const recipeAppID = "599eeff6";
 const recipeApiKey = "9ba899b6cf470706c026e545e7e3e1b6";
-const nutritionAppID = "fd617fa3";
-const nutritionApiKey = "6e6f9be7510b48fac69160d4728c2166";
+// const nutritionAppID = "fd617fa3";
+// const nutritionApiKey = "6e6f9be7510b48fac69160d4728c2166";
 
 // Change this to however many hits you want the page to display after a search
 const maxHits = 12;
@@ -58,7 +58,18 @@ function getRecipes(searchText) {
             var uiDimmer = $("<div>").addClass("ui dimmer");
             var content = $("<div>").addClass("content");
             var center = $("<div>").addClass("center");
-            var seeRecipeButton = $("<div>").addClass("ui inverted button recipeButton").text("See Recipe").attr('id', 'recipeButton').attr("role", "button");
+            var seeRecipeButton = $("<div>").addClass("ui inverted button recipeButton").text("See Recipe");
+
+            // Use a data attribute to hold the URI to the recipe.
+            // This will be used when displaying details for a search result
+            // the encodeURIComponent method is a built-in JavaScript function that substitutes some special characters in the URI so it can be passed to an API
+            seeRecipeButton.attr("data-uri", encodeURIComponent(response.hits[i].recipe.uri));
+
+            // Add the see recipe button's click handler dynamically
+            seeRecipeButton.click(function(event) {
+                // Call the getInfo method and pass it the URI stored in whichever button was clicked
+                getInfo($(this).attr("data-uri"));
+            });
             var saveRecipeButton = $("<div>").addClass("ui inverted button").text("Save Recipe").attr("role", "button");
             center.append(seeRecipeButton, saveRecipeButton);
             content.append(center);
@@ -118,5 +129,50 @@ function getNutrition(ingredients) {
         contentType: "application/json"
     }).then(function (response) {
         console.log(response);
+    });
+}
+
+function getInfo(recipeUri) {
+    var queryUrl = "https://api.edamam.com/search?r=" + recipeUri + "&app_id=" + recipeAppID + "&app_key=" + recipeApiKey;
+    $.ajax({
+        url: queryUrl,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+
+        // Show the info div
+        $("#recipeNutritionCard").show();
+
+        // Show image
+        $("#mainImg").attr("src", response[0].image);
+        $("#mainImg").attr("alt", response[0].label);
+
+        // Show heading
+        $("#recipeTitle").text(response[0].label);
+
+        // Show ingredients
+        $("#ingredients").empty();
+        for (var i = 0; i < response[0].ingredientLines.length; i++) {
+            var ingrDiv = $("<div>").addClass("item");
+            ingrDiv.text(response[0].ingredientLines[i]);
+            ingrDiv.attr("role", "listitem");
+
+            $("#ingredients").append(ingrDiv);
+        }
+
+        // Display the nutrition info
+        $("#calories").text(response[0].calories.toFixed(1));
+
+        var carbQty = response[0].totalNutrients.CHOCDF.quantity.toFixed(1);
+        var carbUnits = response[0].totalNutrients.CHOCDF.unit;
+        $("#carbs").text(carbQty + " " + carbUnits);
+
+        var fatQty = response[0].totalNutrients.FAT.quantity.toFixed(1);
+        var fatUnits = response[0].totalNutrients.FAT.unit;
+        $("#fat").text(fatQty + " " + fatUnits);
+
+        var fiberQty = response[0].totalNutrients.FIBTG.quantity.toFixed(1);
+        var fiberUnits = response[0].totalNutrients.FIBTG.unit;
+        $("#fiber").text(fiberQty + " " + fiberUnits);
     });
 }
