@@ -39,6 +39,9 @@ function getRecipes(searchText) {
     }).then(function (response) {
         console.log(response);
 
+        // Hide the info div
+        $("#recipeNutritionCard").hide();
+
         // Clear the search results div
         $("#previewCards").empty();
 
@@ -58,17 +61,16 @@ function getRecipes(searchText) {
             var img = $("<img>").attr("alt", response.hits[i].recipe.label).attr("src", response.hits[i].recipe.image);
 
             // Save the URI for each recipe so details can be displayed when this result is clicked
-            img.attr("value", encodeURIComponent(response.hits[i].recipe.uri));
+            img.attr("data-uri", encodeURIComponent(response.hits[i].recipe.uri));
 
             // These aid in screen reader compatibility
             img.attr("role", "button");
             img.attr("tabindex", "0");
 
-            // Define click handler for card
+            // Define click handler for image
             img.click(function(event) {
                 event.preventDefault();
-                alert($(this).attr("value"));
-                getInfo($(this).attr("value"));
+                getInfo($(this).attr("data-uri"));
             });
             blurDimImg.append(img);
             card.append(blurDimImg);
@@ -94,7 +96,7 @@ function getRecipes(searchText) {
 
         // Set focus to the first search result in the list
         setTimeout(function() {
-            $("a:first").focus();
+            $("img:first").focus();
         }, 500);
     });
 }
@@ -106,5 +108,40 @@ function getInfo(recipeUri) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
+
+        // Show the info div
+        $("#recipeNutritionCard").show();
+
+        // Show image
+        $("#mainImg").attr("src", response[0].image);
+        $("#mainImg").attr("alt", response[0].label);
+
+        // Show heading
+        $("#recipeTitle").text(response[0].label);
+
+        // Show ingredients
+        $("#ingredients").empty();
+        for (var i = 0; i < response[0].ingredientLines.length; i++) {
+            var ingrDiv = $("<div>").addClass("item");
+            ingrDiv.text(response[0].ingredientLines[i]);
+            ingrDiv.attr("role", "listitem");
+
+            $("#ingredients").append(ingrDiv);
+        }
+
+        // Display the nutrition info
+        $("#calories").text(response[0].calories.toFixed(1));
+
+        var carbQty = response[0].totalNutrients.CHOCDF.quantity.toFixed(1);
+        var carbUnits = response[0].totalNutrients.CHOCDF.unit;
+        $("#carbs").text(carbQty + " " + carbUnits);
+
+        var fatQty = response[0].totalNutrients.FAT.quantity.toFixed(1);
+        var fatUnits = response[0].totalNutrients.FAT.unit;
+        $("#fat").text(fatQty + " " + fatUnits);
+
+        var fiberQty = response[0].totalNutrients.FIBTG.quantity.toFixed(1);
+        var fiberUnits = response[0].totalNutrients.FIBTG.unit;
+        $("#fiber").text(fiberQty + " " + fiberUnits);
     });
 }
