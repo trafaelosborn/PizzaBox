@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PizzaBox</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Playball&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,8 +23,8 @@
 
             <form>
                 <label for="searchField">Search: </label>
-                <input type="text" id="searchField">
-                <input type="submit" id="searchButton" value="Pick Your Poison">
+                <input type="text" id="input-actual-2" sclass="searchField">
+                <input type="submit"  class="searchButton" value="Pick Your Poison">
             </form>
         </div>
     </header>
@@ -116,6 +118,22 @@
     </div>
 
 
+    </div>
+
+    <div class="hero-search">
+        <div class="hero-image"></div>
+        <div class="hero-foreground">
+            <h1 id="hero-head">PizzaBox</h1>
+            <h1 id="Hero-descrip">Welcome to Pizzabox! <br> The internet's only recipe search app!</h1>
+            <div class="ui transparent massive fluid icon input hero-input" id="hero-input " style="color: whitesmoke;">
+                
+                <input class="searchField" id="input-actual" type="text" placeholder="Search by ingredient, recipe, or diet" onclick="this.value='';this.style.color='whitesmoke';">
+                
+              </div>
+            <button class="massive ui button hero-button searchButton" >
+                    Pick Your Poison
+            </button>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

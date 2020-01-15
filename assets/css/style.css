@@ -1,0 +1,56 @@
+.hero-search {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    height: 100%; 
+    width: 100%;
+    background: url('../img/burger.jpg') no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.hero-foreground {
+    width: 60%; /*can be in percentage also.*/
+    height: 50%;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    margin-left: 18%;
+    margin-top: 5%;
+    color: whitesmoke;
+}
+
+.hero-input {
+    margin-left: 19%;
+    font-size: 36px;
+    margin-bottom: 16px;
+    
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+#input-actual {
+    font-size: 36px;
+    
+    font-weight: bold;
+    color: whitesmoke;
+}
+#hero-button {
+    margin-top: 20px;
+}
+
+#hero-head{
+    font-family: 'Playball', cursive;
+    color: whitesmoke;
+    font-size: 100px;
+}
+
+#Hero-descrip{
+    
+    color: whitesmoke;
+    font-size: 50px;
+}
+
+
+
+

@@ -11,16 +11,22 @@ $(document).ready(function () {
     // Hide our dynamic content until it is needed
     $("#previewCards").hide();
     $("#recipeNutritionCard").hide();
+    // $(".hero-search").hide();
 
     // Give the search field focus when the page first loads
-    $("#searchField").focus();
+    $("#input-actual").focus();
 
     // Define click handler for search button
-    $("#searchButton").click(function (event) {
+    $(".searchButton").click(function (event) {
         event.preventDefault();
-
+        
         // Get the text from the search field, trimming off any excess white space
-        var searchText = $("#searchField").val().trim();
+        if($(".hero-search").is(":visible")){
+            var searchText = $("#input-actual").val();
+        } else{
+            var searchText = $("#input-actual-2").val();
+        }
+        
 
         // Ensure valid imput before performing search
         if (searchText.length > 0) {
@@ -106,12 +112,15 @@ function getRecipes(searchText) {
         // Show the search results and hide the results div if visible
         $("#recipeNutritionCard").hide();
         $("#previewCards").show();
-
+        $(".hero-search").hide();
+        
         // Set focus to the first search result in the list
         setTimeout(function () {
             $("a:first").focus();
         }, 500);
+        
     });
+    
 }
 
 /*
