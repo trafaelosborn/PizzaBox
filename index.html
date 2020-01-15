@@ -16,23 +16,27 @@
 
 
     <header>
-        <div class="ui menu">
-            <div class="header item" role="heading">
-                Pizza Box
+        <div class="ui menu" id="menu">
+           
+            <div class="logo" role="heading">
+                <h1 id="logo">Pizza Box</h1>
             </div>
 
             <form>
-                <label for="searchField">Search: </label>
-                <input type="text" id="input-actual-2" sclass="searchField">
-                <input type="submit"  class="searchButton" value="Pick Your Poison">
+                <label for="searchField"></label>
+                <input type="text" id="input-actual-2" class="fluid searchField transparent" placeholder="Search by ingredient, recipe, or diet" onclick="this.value='';this.style.color='whitesmoke';">
+                <button class="massive ui button hero-button searchButton" >
+                    Pick Your Poison
+            </button>
             </form>
         </div>
+        
     </header>
 
 
     <!--Recipe Cards-->
 
-    <div class="ui container">
+    <div class="ui container" id="infocards">
         <div class="ui special cards" id="previewCards" role="list">
             <div class="card">
                 <div class="blurring dimmable image">

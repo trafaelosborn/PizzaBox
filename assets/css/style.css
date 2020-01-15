@@ -24,16 +24,27 @@
     margin-left: 19%;
     font-size: 36px;
     margin-bottom: 16px;
-    
     font-weight: bold;
     color: whitesmoke;
 }
 
 #input-actual {
-    font-size: 36px;
-    
+    font-size: 36px; 
     font-weight: bold;
     color: whitesmoke;
+}
+
+#input-actual-2 {
+    font-size: 36px; 
+    font-weight: bold;
+    margin: 25px;
+    padding: 10px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    background-color: rgb(226, 68, 68);
+    width: 700px;
 }
 #hero-button {
     margin-top: 20px;
@@ -45,12 +56,36 @@
     font-size: 100px;
 }
 
-#Hero-descrip{
-    
+#logo{
+    font-family: 'Playball', cursive;
+    color: whitesmoke;
+    font-size: 50px;
+    padding: 20px;
+    margin-left: 100px;
+}
+
+#Hero-descrip{ 
     color: whitesmoke;
     font-size: 50px;
 }
 
+body {
+    background-color: black;
+}
 
+#infocards {
+    margin-top: 40px;  
+}
+
+#previewCards {
+    margin-left: 7%;
+}
+#menu {
+    background-color: rgb(226, 68, 68);
+}
+
+.nav-content {
+    margin-left: 5%;
+}
 
 
